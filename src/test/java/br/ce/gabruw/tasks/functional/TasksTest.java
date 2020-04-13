@@ -12,17 +12,21 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class TasksTest {
-	private final String URL = "http://localhost:8001/tasks";
+	private final String URL_LOCAL = "http://localhost:8001/tasks";
+	private final String URL_REMOTE = "http://192.168.0.108:8001/tasks";
 
 	private WebDriver accessApplication(long time) throws MalformedURLException {
-		// *** Para utilizar o driver sem unidades externas, comente a linha 19~22 e descomente a linha 24~26 ***
+		// *** Para utilizar o driver sem unidades externas, comente a linha 22~24 ***
+		// *** Para drivers externos locais, descomente as linhas 22~24 e 26 ***
+		// *** Para drivers externos remotos, descomente as linhas 22, 23 e 24~26 *** 
 		DesiredCapabilities cap = DesiredCapabilities.chrome();
 		WebDriver driver = new RemoteWebDriver(new URL("http://192.168.0.108:4444/wd/hub"), cap);
-		driver.navigate().to(URL);
+//		driver.navigate().to(URL_LOCAL); // LOCAL
+		driver.navigate().to(URL_REMOTE); // REMOTE
 		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
 
 //		WebDriver driver = new ChromeDriver();
-//		driver.navigate().to(URL);
+//		driver.navigate().to(URL_LOCAL);
 //		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
 
 		return driver;
