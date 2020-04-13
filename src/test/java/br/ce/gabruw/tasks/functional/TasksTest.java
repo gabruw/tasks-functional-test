@@ -1,29 +1,35 @@
 package br.ce.gabruw.tasks.functional;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class TasksTest {
 	private final String URL = "http://localhost:8001/tasks";
 
-	private WebDriver accessApplication(long time) {
-		System.setProperty("webdriver.chrome.driver",
-				"C:/Users/snyp_/OneDrive/Documents/ChromeDriver/80/chromedriver.exe");
-
-		WebDriver driver = new ChromeDriver();
+	private WebDriver accessApplication(long time) throws MalformedURLException {
+		// *** Para utilizar o driver sem unidades externas, comente a linha 19~22 e descomente a linha 24~26 ***
+		DesiredCapabilities cap = DesiredCapabilities.chrome();
+		WebDriver driver = new RemoteWebDriver(new URL("http://192.168.0.108:4444/wd/hub"), cap);
 		driver.navigate().to(URL);
 		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+
+//		WebDriver driver = new ChromeDriver();
+//		driver.navigate().to(URL);
+//		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
 
 		return driver;
 	}
 
 	@Test
-	public void saveTaskWithSuccess() {
+	public void saveTaskWithSuccess() throws MalformedURLException {
 		WebDriver driver = accessApplication(10);
 
 		try {
@@ -45,7 +51,7 @@ public class TasksTest {
 	}
 
 	@Test
-	public void dontSaveTaskWithoutDescription() {
+	public void dontSaveTaskWithoutDescription() throws MalformedURLException {
 		WebDriver driver = accessApplication(10);
 
 		try {
@@ -69,7 +75,7 @@ public class TasksTest {
 	}
 
 	@Test
-	public void dontSaveTaskWithoutDate() {
+	public void dontSaveTaskWithoutDate() throws MalformedURLException {
 		WebDriver driver = accessApplication(10);
 
 		try {
@@ -93,7 +99,7 @@ public class TasksTest {
 	}
 
 	@Test
-	public void dontSaveTaskWithPastDate() {
+	public void dontSaveTaskWithPastDate() throws MalformedURLException {
 		WebDriver driver = accessApplication(10);
 
 		try {
@@ -119,7 +125,7 @@ public class TasksTest {
 	}
 
 	@Test
-	public void saveTaskWithMissingButtonId() {
+	public void saveTaskWithMissingButtonId() throws MalformedURLException {
 		WebDriver driver = accessApplication(5);
 
 		try {
