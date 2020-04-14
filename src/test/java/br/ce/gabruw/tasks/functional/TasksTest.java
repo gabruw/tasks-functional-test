@@ -17,31 +17,6 @@ public class TasksTest {
 	private final String URL_LOCAL = "http://localhost:8001/tasks";
 	private final String URL_REMOTE = "http://192.168.0.108:8001/tasks";
 
-	private WebDriver accessApplication(long time) throws MalformedURLException {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\snyp_\\OneDrive\\Área de Trabalho\\Dev\\selenium\\chromedriver.exe");
-		// *** Para utilizar o driver sem unidades externas, comente a linha 22~24 ***
-		// *** Para drivers externos locais, descomente as linhas 22~24 e 26 ***
-		// *** Para drivers externos remotos, descomente as linhas 22, 23 e 24~26 ***
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("start-maximized");
-		options.addArguments("disable-infobars");
-		options.addArguments("--disable-extensions");
-		options.addArguments("--disable-gpu");
-		options.addArguments("--disable-dev-shm-usage");
-		options.addArguments("--no-sandbox");
-		
-		WebDriver driver = new RemoteWebDriver(new URL("http://192.168.0.108:4444/wd/hub"), options);
-//		driver.navigate().to(URL_LOCAL); // LOCAL
-		driver.navigate().to(URL_REMOTE); // REMOTE
-		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
-
-//		WebDriver driver = new ChromeDriver(options);
-//		driver.navigate().to(URL_LOCAL);
-//		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
-
-		return driver;
-	}
-
 	@Test
 	public void saveTaskWithSuccess() throws MalformedURLException {
 		WebDriver driver = accessApplication(10);
@@ -164,5 +139,27 @@ public class TasksTest {
 			// Fechar
 			driver.quit();
 		}
+	}
+	
+	private WebDriver accessApplication(long time) throws MalformedURLException {
+//		System.setProperty("webdriver.chrome.driver", "C:\\Users\\snyp_\\OneDrive\\Área de Trabalho\\Dev\\selenium\\chromedriver.exe");
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("start-maximized");
+		options.addArguments("disable-infobars");
+		options.addArguments("--disable-extensions");
+		options.addArguments("--disable-gpu");
+		options.addArguments("--disable-dev-shm-usage");
+		options.addArguments("--no-sandbox");
+		
+		WebDriver driver = new RemoteWebDriver(new URL("http://192.168.0.108:4444/wd/hub"), options);
+//		driver.navigate().to(URL_LOCAL); // LOCAL
+		driver.navigate().to(URL_REMOTE); // REMOTE
+		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+
+//		WebDriver driver = new ChromeDriver(options);
+//		driver.navigate().to(URL_LOCAL);
+//		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+
+		return driver;
 	}
 }
