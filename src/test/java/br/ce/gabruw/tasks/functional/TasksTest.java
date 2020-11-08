@@ -142,7 +142,7 @@ public class TasksTest {
 	}
 	
 	private WebDriver accessApplication(long time) throws MalformedURLException {
-//		System.setProperty("webdriver.chrome.driver", "C:\\Users\\snyp_\\OneDrive\\Área de Trabalho\\Dev\\selenium\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Snyp\\Documents\\Developer\\Selenium\\chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("start-maximized");
 		options.addArguments("disable-infobars");
