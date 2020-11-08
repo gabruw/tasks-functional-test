@@ -23,10 +23,10 @@ public class HealthCheckIT {
 		options.addArguments("--disable-dev-shm-usage");
 		options.addArguments("--no-sandbox");
 
-		WebDriver driver = new RemoteWebDriver(new URL("http://192.168.0.108:4444/wd/hub"), options);
+		WebDriver driver = new RemoteWebDriver(new URL("http://192.168.0.105:4444/wd/hub"), options);
 
 		try {
-			driver.navigate().to("http://192.168.0.108:8080/tasks");
+			driver.navigate().to("http://192.168.0.105:8080/tasks");
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 			String text = driver.findElement(By.id("addTodo")).getText();

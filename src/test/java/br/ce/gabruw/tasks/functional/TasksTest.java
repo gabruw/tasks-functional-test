@@ -15,7 +15,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class TasksTest {
 	private final String URL_LOCAL = "http://localhost:8080/tasks";
-	private final String URL_REMOTE = "http://192.168.0.108:8080/tasks";
+	private final String URL_REMOTE = "http://192.168.0.105:8080/tasks";
 
 	@Test
 	public void saveTaskWithSuccess() throws MalformedURLException {
@@ -151,7 +151,7 @@ public class TasksTest {
 		options.addArguments("--disable-dev-shm-usage");
 		options.addArguments("--no-sandbox");
 		
-		WebDriver driver = new RemoteWebDriver(new URL("http://192.168.0.108:4444/wd/hub"), options);
+		WebDriver driver = new RemoteWebDriver(new URL("http://192.168.0.105:4444/wd/hub"), options);
 //		driver.navigate().to(URL_LOCAL); // LOCAL
 		driver.navigate().to(URL_REMOTE); // REMOTE
 		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
