@@ -26,7 +26,7 @@ public class HealthCheckIT {
 		WebDriver driver = new RemoteWebDriver(new URL("http://192.168.0.108:4444/wd/hub"), options);
 
 		try {
-			driver.navigate().to("http://192.168.0.108:8001/tasks");
+			driver.navigate().to("http://192.168.0.108:8080/tasks");
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 			String text = driver.findElement(By.id("addTodo")).getText();

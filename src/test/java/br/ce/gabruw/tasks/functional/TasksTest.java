@@ -14,8 +14,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class TasksTest {
-	private final String URL_LOCAL = "http://localhost:8001/tasks";
-	private final String URL_REMOTE = "http://192.168.0.108:8001/tasks";
+	private final String URL_LOCAL = "http://localhost:8080/tasks";
+	private final String URL_REMOTE = "http://192.168.0.108:8080/tasks";
 
 	@Test
 	public void saveTaskWithSuccess() throws MalformedURLException {
